@@ -21,7 +21,7 @@
 #include <Arduino.h>
 
 void setup() {
-    printf("Fucking Slaves get your ass back here!\n");
+    printf("You will see this text in the Serial Monitor when you press the EN button.\n");
 }
 
 void loop() {
