@@ -88,7 +88,9 @@
 
 ## 许可
 
-本项目代码以 GNU Affero General Public License 第 3 版许可证授权。
+本项目代码主要以 GNU Affero General Public License 第 3 版许可证授权。
+
+微雪代码库以其使用的许可证（包括 LGPLv2 等）授权。
 
 您可以在 GNU Affero General Public License 第 3 版或您想使用的更新的版本下修改并且/或者转载。
 

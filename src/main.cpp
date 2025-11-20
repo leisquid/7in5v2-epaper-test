@@ -18,7 +18,7 @@
  */
 
 
-#include <Arduino.h>
+#include "DEV_Config.h"
 
 void setup() {
     printf("You will see this text in the Serial Monitor when you press the EN button.\n");
