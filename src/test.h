@@ -1,6 +1,6 @@
 /**
- *  @file   leisdefinitions.h
- *  @brief  general definitions for Leissoft open-sourced projects.
+ *  @file   test.h
+ *  @brief  a 4-gray picture array.
  *  Copyright (C) 2023-25 Leisquid Tianyi Li.
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -17,11 +17,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#if ! defined __LEISDEFINITIONS_H_
-#   define __LEISDEFINITIONS_H_
+#if ! defined _IMAGE_TEST_H
+#   define _IMAGE_TEST_H
 
-#       if ! defined EXIT_SUCCESS
-#           define EXIT_SUCCESS 0
-#       endif /* EXIT_SUCCESS */
+extern unsigned char gImage_test[];
 
-#endif /* __LEISDEFINITIONS_H_ */
+#endif

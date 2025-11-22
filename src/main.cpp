@@ -17,11 +17,65 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
+ 
 #include "DEV_Config.h"
 
+#include "EPD_7in5_V2.h"
+#include "Debug.h"
+
+#include "test.h"   /* 临时的 4 阶图像测试 */
+#include "mono.h"   /* 临时的黑白图像测试 */
+
 void setup() {
-    printf("You will see this text in the Serial Monitor when you press the EN button.\n");
+
+    DEV_Module_Init();
+    printf("EPD_7IN5_V2_test Demo\n");
+
+    printf("e-Paper Init and Clear...\r\n");
+    DEV_Delay_ms(500);
+
+    UBYTE *imageArray4Gr;
+    UDOUBLE imageSize4Gr = EPD_7IN5_V2_WIDTH / 8 * EPD_7IN5_V2_HEIGHT * 2;
+    if ( (imageArray4Gr = (UBYTE *) malloc(imageSize4Gr)) == NULL ) {
+        printf("Failed to apply for imageArray4Gr memory...\n");
+        while (1);
+    }
+    memcpy(imageArray4Gr, gImage_test, imageSize4Gr);
+
+    printf("show image for array\r\n");
+    printf("init 4gray\n");
+    EPD_7IN5_V2_Init_4Gray();
+    printf("clear\n");
+    EPD_7IN5_V2_Clear();
+    printf("display 4gray\n");
+    EPD_7IN5_V2_Display_4Gray(imageArray4Gr);
+    /* 得需要封装一下，不然乱了。 */
+    free(imageArray4Gr);
+    imageArray4Gr = NULL;
+
+    DEV_Delay_ms(500);
+
+    UBYTE *imageArrayBW;
+    UWORD imageSizeBW = EPD_7IN5_V2_WIDTH / 8 * EPD_7IN5_V2_HEIGHT;
+    if ( (imageArrayBW = (UBYTE *) malloc(imageSizeBW)) == NULL ) {
+        printf("Failed to apply for imageArrayBW memory...\n");
+        while (1);
+    }
+    memcpy(imageArrayBW, gImage_mono, imageSizeBW);
+
+    printf("show image for array2\r\n");
+    printf("init bw\n");
+    EPD_7IN5_V2_Init();
+    // printf("clear\n");
+    // EPD_7IN5_V2_Clear();
+    printf("display bw\n");
+    EPD_7IN5_V2_Display(imageArrayBW);
+
+    free(imageArrayBW);
+    imageArrayBW = NULL;
+
+    printf("Going to Sleep...\r\n");
+    EPD_7IN5_V2_Sleep();
 }
 
 void loop() {
