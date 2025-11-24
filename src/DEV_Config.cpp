@@ -39,6 +39,8 @@ void GPIO_Config(void)
     pinMode(EPD_MOSI_PIN, OUTPUT);
     pinMode(EPD_CS_PIN , OUTPUT);
 
+    pinMode(LED_PIN, OUTPUT);
+
     digitalWrite(EPD_CS_PIN , HIGH);
     digitalWrite(EPD_SCK_PIN, LOW);
 }

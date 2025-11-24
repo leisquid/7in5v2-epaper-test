@@ -32,8 +32,6 @@ void setup() {
     printf("EPD_7IN5_V2_test Demo\n");
 
     printf("e-Paper Init and Clear...\r\n");
-    DEV_Delay_ms(500);
-
     UBYTE *imageArray4Gr;
     UDOUBLE imageSize4Gr = EPD_7IN5_V2_WIDTH / 8 * EPD_7IN5_V2_HEIGHT * 2;
     if ( (imageArray4Gr = (UBYTE *) malloc(imageSize4Gr)) == NULL ) {
