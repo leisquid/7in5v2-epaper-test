@@ -40,6 +40,10 @@
 #define EPD_7IN5_V2_WIDTH       800
 #define EPD_7IN5_V2_HEIGHT      480
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 UBYTE EPD_7IN5_V2_Init(void);
 UBYTE EPD_7IN5_V2_Init_Fast(void);
 UBYTE EPD_7IN5_V2_Init_Part(void);
@@ -51,5 +55,9 @@ void EPD_7IN5_V2_Display_Part(UBYTE *blackimage,UDOUBLE x_start, UDOUBLE y_start
 void EPD_7IN5_V2_Display_4Gray(UBYTE *Image);
 void EPD_7IN5_V2_WritePicture_4Gray(const UBYTE *Image);    /* 按：这个总感觉是一个被废弃的函数，那就不打算用了。 */
 void EPD_7IN5_V2_Sleep(void);
+
+#if defined __cplusplus
+}
+#endif
 
 #endif

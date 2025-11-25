@@ -17,7 +17,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
- 
+
 #include "DEV_Config.h"
 
 #include "EPD_7in5_V2.h"
@@ -47,6 +47,8 @@ void setup() {
     EPD_7IN5_V2_Clear();
     printf("display 4gray\n");
     EPD_7IN5_V2_Display_4Gray(imageArray4Gr);
+    printf("Going to Sleep...\r\n");
+    EPD_7IN5_V2_Sleep();
     /* 得需要封装一下，不然乱了。 */
     free(imageArray4Gr);
     imageArray4Gr = NULL;
@@ -62,15 +64,37 @@ void setup() {
     memcpy(imageArrayBW, gImage_mono, imageSizeBW);
 
     printf("show image for array2\r\n");
-    printf("init bw\n");
-    EPD_7IN5_V2_Init();
+    printf("init bw_fast\n");
+    EPD_7IN5_V2_Init_Fast();
     // printf("clear\n");
     // EPD_7IN5_V2_Clear();
-    printf("display bw\n");
+    printf("display bw_fast\n");
     EPD_7IN5_V2_Display(imageArrayBW);
+
+    // printf("init part\n");
+    // EPD_7IN5_V2_Init_Part();
+    // printf("display bw_part\n");
+    // EPD_7IN5_V2_Display_Part(imageArrayBW, 0, 0, EPD_7IN5_V2_WIDTH, EPD_7IN5_V2_HEIGHT);
 
     free(imageArrayBW);
     imageArrayBW = NULL;
+
+    UBYTE *imageArrayPart;
+    UWORD imageSizePart = 80 / 8 * 50;
+    if ( (imageArrayPart = (UBYTE *) malloc(imageSizePart)) == NULL ) {
+        printf("Failed to apply for imageArrayPart memory...\n");
+        while (1);
+    }
+    memset(imageArrayPart, 0, imageSizePart * sizeof(UBYTE));
+
+    printf("part display test\r\n");
+    printf("init part\n");
+    EPD_7IN5_V2_Init_Part();
+    printf("display part\n");
+    EPD_7IN5_V2_Display_Part(imageArrayPart, 100, 300, 180, 350);
+
+    free(imageArrayPart);
+    imageArrayPart = NULL;
 
     printf("Going to Sleep...\r\n");
     EPD_7IN5_V2_Sleep();
