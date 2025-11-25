@@ -32,6 +32,8 @@ void setup() {
     printf("EPD_7IN5_V2_test Demo\n");
 
     printf("e-Paper Init and Clear...\r\n");
+
+#if 1
     UBYTE *imageArray4Gr;
     UDOUBLE imageSize4Gr = EPD_7IN5_V2_WIDTH / 8 * EPD_7IN5_V2_HEIGHT * 2;
     if ( (imageArray4Gr = (UBYTE *) malloc(imageSize4Gr)) == NULL ) {
@@ -53,8 +55,10 @@ void setup() {
     free(imageArray4Gr);
     imageArray4Gr = NULL;
 
-    DEV_Delay_ms(500);
+    DEV_Delay_ms(4000);
+#endif
 
+#if 1
     UBYTE *imageArrayBW;
     UWORD imageSizeBW = EPD_7IN5_V2_WIDTH / 8 * EPD_7IN5_V2_HEIGHT;
     if ( (imageArrayBW = (UBYTE *) malloc(imageSizeBW)) == NULL ) {
@@ -64,11 +68,11 @@ void setup() {
     memcpy(imageArrayBW, gImage_mono, imageSizeBW);
 
     printf("show image for array2\r\n");
-    printf("init bw_fast\n");
-    EPD_7IN5_V2_Init_Fast();
-    // printf("clear\n");
-    // EPD_7IN5_V2_Clear();
-    printf("display bw_fast\n");
+    printf("init bw\n");
+    EPD_7IN5_V2_Init();
+    printf("clear\n");
+    EPD_7IN5_V2_Clear();
+    printf("display bw\n");
     EPD_7IN5_V2_Display(imageArrayBW);
 
     // printf("init part\n");
@@ -78,14 +82,16 @@ void setup() {
 
     free(imageArrayBW);
     imageArrayBW = NULL;
+#endif
 
+#if 1
     UBYTE *imageArrayPart;
     UWORD imageSizePart = 80 / 8 * 50;
     if ( (imageArrayPart = (UBYTE *) malloc(imageSizePart)) == NULL ) {
         printf("Failed to apply for imageArrayPart memory...\n");
         while (1);
     }
-    memset(imageArrayPart, 0, imageSizePart * sizeof(UBYTE));
+    memset(imageArrayPart, 0xc3, imageSizePart * sizeof(UBYTE));
 
     printf("part display test\r\n");
     printf("init part\n");
@@ -95,6 +101,7 @@ void setup() {
 
     free(imageArrayPart);
     imageArrayPart = NULL;
+#endif
 
     printf("Going to Sleep...\r\n");
     EPD_7IN5_V2_Sleep();
