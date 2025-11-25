@@ -57,9 +57,6 @@
 #define GPIO_PIN_RESET 0
 
 
-#if defined __cplusplus
-extern "C" {
-#endif
 
 /**
  * GPIO read and write
@@ -71,6 +68,10 @@ extern "C" {
  * delay x ms
 **/
 #define DEV_Delay_ms(__xms) delay(__xms)
+
+#if defined __cplusplus
+extern "C" {
+#endif
 
 /*------------------------------------------------------------------------------------------------------*/
 UBYTE DEV_Module_Init(void);
